@@ -40,7 +40,6 @@ class SAM2VideoPredictorNPZ(SAM2Base):
         self.clear_non_cond_mem_for_multi_obj = clear_non_cond_mem_for_multi_obj
         self.add_all_frames_to_correct_as_cond = add_all_frames_to_correct_as_cond
 
-    @torch.inference_mode()
     def init_state(
         self,
         #video_path,
@@ -173,7 +172,6 @@ class SAM2VideoPredictorNPZ(SAM2Base):
         """Get the total number of unique object ids received so far in this session."""
         return len(inference_state["obj_idx_to_id"])
 
-    @torch.inference_mode()
     def add_new_points_or_box(
         self,
         inference_state,
@@ -663,7 +661,6 @@ class SAM2VideoPredictorNPZ(SAM2Base):
             input_frames_inds.update(mask_inputs_per_frame.keys())
         assert all_consolidated_frame_inds == input_frames_inds
 
-    @torch.inference_mode()
     def propagate_in_video(
         self,
         inference_state,
